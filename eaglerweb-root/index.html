@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EaglercraftX Browser Server</title>
+<style>
+  :root { color-scheme: dark; }
+  body {
+    margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    background: #14171c; color: #e6e6e6;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  }
+  .card {
+    max-width: 640px; margin: 24px; padding: 32px 36px;
+    background: #1d222b; border: 1px solid #2c3442; border-radius: 14px;
+    box-shadow: 0 10px 40px rgba(0,0,0,.45);
+  }
+  h1 { font-size: 22px; margin: 0 0 6px; color: #7fd67f; }
+  h1 span { color: #e6e6e6; }
+  p.sub { margin: 0 0 22px; color: #9aa4b2; font-size: 14px; }
+  .addr {
+    display: block; padding: 12px 16px; margin: 0 0 6px;
+    background: #10141a; border: 1px solid #2c3442; border-radius: 8px;
+    font-family: ui-monospace, Consolas, monospace; font-size: 15px; color: #ffd479;
+    word-break: break-all; user-select: all;
+  }
+  ol { margin: 18px 0 6px; padding-left: 22px; font-size: 14px; line-height: 1.75; }
+  ol code { background: #10141a; padding: 2px 6px; border-radius: 5px; color: #ffd479; }
+  a { color: #6cb6ff; }
+  .fine { margin-top: 22px; padding-top: 14px; border-top: 1px solid #2c3442;
+          font-size: 12px; color: #8b94a3; line-height: 1.6; }
+</style>
+</head>
+<body>
+  <main class="card">
+    <h1>EaglercraftX <span>Browser Server</span></h1>
+    <p class="sub">Your server is live. Join address for this deployment, derived from the page you are on:</p>
+    <code class="addr" id="join">detecting…</code>
+    <ol>
+      <li>Get a working <strong>Eaglercraft 1.12.2</strong> browser client from
+        <a href="https://eaglercraft.com" rel="noopener noreferrer" target="_blank">eaglercraft.com</a>
+        (the client runs entirely in your browser — this server ships none).</li>
+      <li>Open the client's multiplayer screen, choose <strong>Direct Connect</strong>,
+        and paste <span id="joinInline">the address above</span>.</li>
+      <li>In game, run <code>/register yourpassword yourpassword</code> — this creates your
+        account on this server (AuthMe offline-mode). New deploy = fresh world = the first
+        account is yours: pick a password you have not used elsewhere and change it now.</li>
+      <li>Java Edition players: join via the TCP proxy host:port shown in your Railway
+        <em>Variables</em> tab (<code>RAILWAY_TCP_PROXY_DOMAIN</code> /
+        <code>RAILWAY_TCP_PROXY_PORT</code>), any client version 1.8–latest.</li>
+    </ol>
+    <div class="fine">
+      Not affiliated with Mojang or Microsoft. This is a third-party server infrastructure
+      template; it ships no Minecraft client code or game assets. Running the server means
+      the operator accepts the Minecraft EULA (non-commercial usage guidance in the README).
+      Server software: Paper 1.12.2 + EaglercraftXServer 1.1.1 + AuthMe + Via*.
+    </div>
+  </main>
+  <script>
+    (function () {
+      var h = location.host;
+      var a = "wss://" + h;
+      document.getElementById("join").textContent = a;
+      document.getElementById("joinInline").textContent = a;
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+# Vendored artifacts — SHA256 pins (verified at Docker build time with sha256sum -c)
+# paper-1.12.2-1620.jar  — PaperMC official build 1620 (latest, 2021-12-20, STABLE channel), LGPL
+3a2041807f492dcdc34ebb324a287414946e3e05ec3df6fd03f5b5f7d9afc210  paper-1.12.2-1620.jar
+# EaglerXServer.jar      — lax1dude/eaglerxserver release v1.1.1 (2026-08-01), SPDX-EPL/derivative license per repo
+468cb07eb7ca466b21b439be75156d3d01579327f4c6dae5b67d471137a64208  EaglerXServer.jar
+# EaglerWeb.jar          — lax1dude/eaglerxserver release v1.1.1 (in-server HTTP file host / landing page)
+ab64267d15b3c5a0239a383c574402a699bb37e6ce8ecf87e8f4ca9f0cf3b565  EaglerWeb.jar
+# EaglerXRewind.jar      — lax1dude/eaglerxserver release v1.1.1 (1.5.2 client protocol translation)
+95e71e7196e3f67efdc3b513101db911ce9c9214f69042a1bfc108f86ff019c8  EaglerXRewind.jar
+# AuthMe-5.6.0-legacy.jar — AuthMeReloaded 5.6.0 legacy build (2024-06-28; the build the
+#   official Paper 1.12.2 Eaglercraft distribution ships; 6.x aborts on 1.12.2), GPL-3.0
+5be8f17784baf3e373f71e4a8fd3d73e65661ca48803a02e0bdd6dc4aca0e074  AuthMe-5.6.0-legacy.jar
+# ViaVersion-5.12.2.jar  — ViaVersion 5.12.2 release (2026-10-27), GPL-3.0
+c0b63badcb0f7d38f4443e06820f2b8142dd4f0d3b0511f9330ff1050430e6b2  ViaVersion-5.12.2.jar
+# ViaBackwards-5.12.2.jar — ViaBackwards 5.12.2 release (2026-10-27), GPL-3.0
+e989440e0aad7e12d4685d7a57df854691b67660966a95ec0450e20ce98e87ab  ViaBackwards-5.12.2.jar
+# ViaRewind-4.2.0.jar    — ViaRewind 4.2.0 release (2026-09-18), GPL-3.0
+f5113ea939353fec6170e6d1b7d2326fab76fa8d0cee594f689796995fc96720  ViaRewind-4.2.0.jar

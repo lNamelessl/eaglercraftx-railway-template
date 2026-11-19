@@ -21,20 +21,22 @@ RUN cd /build/jars && sha256sum -c /build/CHECKSUMS.txt --strict \
 
 # 2) Pre-patch Paper 1.12.2 at BUILD time (PaperClip fetches the vanilla 1.12.2 jar
 #    from Mojang's official CDN exactly once, here in the builder — never at boot).
-#    paperclip-2 LAUNCHES the patched server after patching, so the run is capped with
-#    a timeout; the patched jar is written before the launch begins.
+#    paperclip-2 writes the patched jar to cache/patched_1.12.2.jar and then LAUNCHES
+#    the server (capped by the timeout). The patched jar is what ships at runtime —
+#    NOT the clip jar (which would re-download vanilla at every boot).
 RUN mkdir -p /build/patchwork && cd /build/patchwork \
     && cp /build/jars/paper-1.12.2-1620.jar . \
     && ( timeout -s KILL 360 java -DPaper.IgnoreJavaVersion=true -Dcom.mojang.eula.agree=true -jar paper-1.12.2-1620.jar || true ) \
-    && echo "[build] patchwork contents:" && ls -la /build/patchwork \
-    && echo "[build] cache contents:" && ls -la /build/patchwork/cache 2>/dev/null || true
+    && test -s /build/patchwork/cache/patched_1.12.2.jar \
+    && cp /build/patchwork/cache/patched_1.12.2.jar /build/patchwork/paper-1.12.2-patched.jar \
+    && echo "[build] patched jar staged:" && ls -la /build/patchwork/paper-1.12.2-patched.jar
 
 # 3) One seed boot at build time: generates eula.txt acceptance state, plugin default
 #    configs (EaglercraftXServer, EaglerWeb, AuthMe, Via*), then a clean stop.
 #    No world is shipped: worlds are generated on the user's volume at first boot.
 COPY server-icon.png /tmp/server-icon.png
 RUN mkdir -p /build/seed/plugins && cd /build/seed \
-    && cp /build/patchwork/paper-1.12.2-1620.jar ./server.jar \
+    && cp /build/patchwork/paper-1.12.2-patched.jar ./server.jar \
     && cp /build/jars/EaglerXServer.jar /build/jars/EaglerWeb.jar /build/jars/EaglerXRewind.jar \
           /build/jars/AuthMe-5.6.0-legacy.jar /build/jars/ViaVersion-5.12.2.jar \
           /build/jars/ViaBackwards-5.12.2.jar /build/jars/ViaRewind-4.2.0.jar ./plugins/ \

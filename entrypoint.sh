@@ -93,6 +93,7 @@ fi
 JAVA_ARGS_EXTRA="${JAVA_ARGS:-}"
 exec java -Xms256m -Xmx${HEAP_MB}M \
     -XX:+UseG1GC -XX:+ParallelRefProcEnabled \
+    -XX:+UnlockExperimentalVMOptions \
     -XX:MaxGCPauseMillis=200 \
     -XX:+DisableExplicitGC \
     -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 \
